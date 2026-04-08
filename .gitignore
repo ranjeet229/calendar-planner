@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# ad-hoc desktop captures (curated copies go under docs/readme/)
+Screenshot *.png
+Screenshot *.jpg
+
 # debug
 npm-debug.log*
 yarn-debug.log*
