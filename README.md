@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wall Calendar
 
-## Getting Started
+Interactive wall-style calendar for planning: browse months, pick date ranges, and keep notes. Data stays in the browser via `localStorage`.
 
-First, run the development server:
+## Features
+
+- Month grid with Monday as the first day of the week, leading and trailing days from adjacent months, today highlighted, and weekend styling tied to the theme accent.
+- Navigate with previous and next month, a year dropdown (1950–2080), and a Today control.
+- Date range selection: first tap sets the start, second tap sets the end; a third tap clears the selection. Hovering shows a preview of the range before the end date is chosen.
+- Monthly notes saved per calendar month and restored when you return to that month.
+- Range notes saved per selected range (start and end dates) and loaded when that range is active again.
+- Static US holiday labels for demo dates (see `src/utils/dateUtils.ts`).
+- Hero image with accent color sampled from the image for ribbons and highlights.
+- Responsive layout: narrow viewports stack calendar and notes with scroll; wider viewports use a side-by-side grid. Hero strip keeps a minimum height on small screens so the image loads correctly with `next/image`.
+- Month transitions use lightweight CSS animations.
+
+## Tech Stack
+
+| Area        | Details                          |
+| ----------- | -------------------------------- |
+| Framework   | Next.js 16 (App Router)          |
+| UI          | React 19, TypeScript             |
+| Styling     | Tailwind CSS 4                   |
+| Dates       | date-fns 4                       |
+| Fonts       | Geist (via `next/font`)          |
+
+## Requirements
+
+- Node.js 20 or newer recommended
+- npm (or compatible package manager)
+
+## Setup and Scripts
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Production build and local production server:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+Lint:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Layout
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Path | Role |
+| ---- | ---- |
+| `src/app/` | App Router entry, layout, global styles |
+| `src/components/Calendar.tsx` | Main calendar state, persistence, chrome |
+| `src/components/CalendarGrid.tsx` | Week header and day grid |
+| `src/components/DayCell.tsx` | Single day cell interactions and styles |
+| `src/components/NotesPanel.tsx` | Monthly and range note editors |
+| `src/utils/dateUtils.ts` | Grid building, range helpers, holiday map |
+| `src/utils/colorUtils.ts` | Accent sampling from the hero image |
+| `next.config.ts` | Remote image allowlist for Unsplash |
 
-## Deploy on Vercel
+## Persistence
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All keys are versioned. Clearing site data or a different browser profile starts fresh.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Key | Contents |
+| --- | -------- |
+| `wall-calendar-monthly-notes-v1` | Map of `yyyy-MM` → monthly note text |
+| `wall-calendar-range-by-month-v1` | Map of `yyyy-MM` → selected range for that month view |
+| `wall-calendar-range-notes-v1` | Map of `yyyy-MM-dd|yyyy-MM-dd` → note for that range |
+
+## Images
+
+The hero uses a remote Unsplash URL. Allowed hosts are configured under `images.remotePatterns` in `next.config.ts`.
+
