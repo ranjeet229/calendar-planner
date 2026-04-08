@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+AGENTS.md
+CLAUDE.md
+
 # ad-hoc desktop captures (curated copies go under docs/readme/)
 Screenshot *.png
 Screenshot *.jpg

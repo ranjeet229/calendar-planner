@@ -2,30 +2,6 @@
 
 Interactive wall-style calendar for planning: browse months, pick date ranges, and keep notes. Data stays in the browser via `localStorage`.
 
-## Screenshots
-
-| Desktop — hero image, notes, calendar, and month ribbon |
-| --- |
-| ![Desktop overview](docs/readme/03.png) |
-
-| Desktop — date range selected on the grid |
-| --- |
-| ![Range selection on the calendar](docs/readme/04.png) |
-
-| Desktop — year dropdown and navigation |
-| --- |
-| ![Year control and month navigation](docs/readme/05.png) |
-
-| Phone — stacked calendar, notes, and selection |
-| --- |
-| ![Mobile layout](docs/readme/01.png) |
-
-| Phone — planner with notes filled in |
-| --- |
-| ![Mobile notes and calendar](docs/readme/02.png) |
-
-Files under `docs/readme/` exist only so GitHub can render the images in this file; the app does not load them. GitHub needs those files in the repository (or public URLs) to show pictures here—there is no way to embed images in README from disk without hosting them somewhere Git can fetch. To avoid committing binaries, delete `docs/readme/*.png`, upload the same images elsewhere, and change each `](docs/readme/...` link to a full `https://...` URL.
-
 ## Features
 
 - Month grid with Monday as the first day of the week, leading and trailing days from adjacent months, today highlighted, and weekend styling tied to the theme accent.
@@ -110,4 +86,34 @@ All keys are versioned. Clearing site data or a different browser profile starts
 
 The hero uses a remote Unsplash URL. Allowed hosts are configured under `images.remotePatterns` in `next.config.ts`.
 
+## Deploy
 
+Build with `npm run build` and serve the `.next` output with `npm start`, or deploy to any platform that supports Next.js (for example Vercel).
+
+## Screenshots
+
+<table align="center">
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/readme/03.png" alt="Desktop overview" width="280" /><br /><sub>Desktop — overview</sub>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/readme/04.png" alt="Range selection" width="280" /><br /><sub>Desktop — range selection</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <img src="docs/readme/05.png" alt="Year and navigation" width="280" /><br /><sub>Desktop — year dropdown</sub>
+    </td>
+    <td align="center" valign="top">
+      <img src="docs/readme/01.png" alt="Mobile layout" width="280" /><br /><sub>Phone — stacked layout</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" colspan="2">
+      <img src="docs/readme/02.png" alt="Mobile notes" width="280" /><br /><sub>Phone — notes and calendar</sub>
+    </td>
+  </tr>
+</table>
+
+PNG files in `docs/readme/` are only for this gallery on GitHub; swap paths for full `https://` URLs if you host images elsewhere.
